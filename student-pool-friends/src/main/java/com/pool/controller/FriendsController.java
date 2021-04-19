@@ -17,15 +17,4 @@ public class FriendsController {
 	public List<String> friendsList() {
 		return List.of("Shiva", "Nithya");
 	}
-	@GetMapping("/callback")
-	public CallbackResponse callbackResponse(HttpServletRequest request) {
-		String code=request.getParameter("code");
-		String state=request.getParameter("state");
-		String sessionstate=request.getParameter("session_state");
-		CallbackResponse callbackResponse=new CallbackResponse();
-		callbackResponse.setCode(code);
-		callbackResponse.setState(state);
-		callbackResponse.setSessionState(sessionstate);
-		return callbackResponse;
-	}
 }

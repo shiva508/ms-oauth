@@ -15,9 +15,7 @@ public class OAuthConstants {
 	public static final String OAUTH_TOKEN_FORBIDDEN_MSG = "Your Token has been expaired,You need to login to access this page,Please Login ";
 	public static final String OAUTH_TOKEN_ACCESS_DENIED_MSG = "You do not have permission to acess this page";
 	public static final String OAUTH_TOKEN_OPTIONS_HTTP_METHOD = "OPTIONS";
-	public static final String OAUTH_TOKEN_PUBLIC_URLS[] = { "/oauthuser/login", "/oauthuser/registeruser",
-			"/oauthuser/resetpassword/**", "/oauthuser/allUserModels", "/oauthuser/userName/**", "/oauthuser/email/**",
-			"/oauthuser/oauthLogin", "/oauthuser/usernamepassword" };
+	public static final String OAUTH_TOKEN_PUBLIC_URLS[] = { "/oauth/callback"};
 	public static final String OAUTH_TOKEN_PUBLIC_URLS_ALL[] = { "**" };
 
 	public static List<String> bypassUrls = null;
@@ -32,6 +30,6 @@ public class OAuthConstants {
 	
 	public static final String ROLE_STUDENT="student";
 	public static final String ROLE_COACH="coach";
-	public static final String URL_USER="/users/**";
+	public static final String URL_FRIENDS="/friends/**";
 	public static final String URL_METHOD="/method/delete/**";
 }

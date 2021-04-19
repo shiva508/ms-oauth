@@ -17,7 +17,7 @@ import com.pool.handler.exception.OauthAccessDeniedHandler;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(jsr250Enabled = true, securedEnabled = true, prePostEnabled = true)
-public class StudentPoolSecurityConfig extends WebSecurityConfigurerAdapter {
+public class StudentPoolFriendsSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private OauthAccessDeniedHandler oauthAccessDeniedHandler;
@@ -31,22 +31,11 @@ public class StudentPoolSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*
-		 * http.authorizeRequests((requests) -> requests.antMatchers(HttpMethod.GET,
-		 * OAuthConstants.URL_USER).hasRole(OAuthConstants.ROLE_STUDENT)
-		 * .antMatchers(HttpMethod.DELETE,
-		 * OAuthConstants.URL_METHOD).hasAnyRole(OAuthConstants.ROLE_STUDENT,
-		 * OAuthConstants.ROLE_COACH) // .hasRole("student") //
-		 * .hasAnyAuthority("SCOPE_email")
-		 * .anyRequest().authenticated().and().exceptionHandling().accessDeniedHandler(
-		 * oauthAccessDeniedHandler)).an.oauth2ResourceServer( (authorize) ->
-		 * authorize.jwt().jwtAuthenticationConverter(jwtAuthenticationConverter())).
-		 * exceptionHandling().accessDeniedHandler(oauthAccessDeniedHandler);
-		 */
+		
 		http
 		.authorizeRequests()
-		.antMatchers(HttpMethod.GET, OAuthConstants.URL_USER).hasRole(OAuthConstants.ROLE_STUDENT)
-		.antMatchers(HttpMethod.DELETE, OAuthConstants.URL_METHOD).hasAnyRole(OAuthConstants.ROLE_STUDENT,OAuthConstants.ROLE_COACH)
+		.antMatchers(OAuthConstants.OAUTH_TOKEN_PUBLIC_URLS).permitAll()
+		.antMatchers(HttpMethod.GET, OAuthConstants.URL_FRIENDS).hasRole(OAuthConstants.ROLE_STUDENT)
 		.anyRequest()
 		.authenticated()
 		.and()
