@@ -15,8 +15,8 @@ public class StudentPoolApiGatewayConfiguration {
 							.addRequestParameter("Param", "MyValue"))
 						.uri("http://httpbin.org:80"))
 				.route(r->r.path("/student-pool-friends/**")
-						.uri("http://localhost:8002"))
-				.route(r->r.path("/student-pool-resource-server/**").uri("http://localhost:8000"))
+						.uri("lb://student-pool-friends"))
+				.route(r->r.path("/student-pool-resource-server/**").uri("lb://student-pool-resource-server"))
 				.build();
 	}
 }

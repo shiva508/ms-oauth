@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-
 import com.pool.config.util.RoleExtractor;
 import com.pool.constants.OAuthConstants;
 import com.pool.handler.exception.OauthAccessDeniedHandler;
@@ -35,7 +34,7 @@ public class StudentPoolFriendsSecurityConfig extends WebSecurityConfigurerAdapt
 		http
 		.authorizeRequests()
 		.antMatchers(OAuthConstants.OAUTH_TOKEN_PUBLIC_URLS).permitAll()
-		.antMatchers(HttpMethod.GET, OAuthConstants.URL_FRIENDS).hasRole(OAuthConstants.ROLE_STUDENT)
+		.antMatchers(OAuthConstants.APP_CONTEXT_PATH+OAuthConstants.URL_FRIENDS).hasRole(OAuthConstants.ROLE_STUDENT)
 		.anyRequest()
 		.authenticated()
 		.and()

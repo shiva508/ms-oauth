@@ -32,4 +32,5 @@ public class OAuthConstants {
 	public static final String ROLE_COACH="coach";
 	public static final String URL_FRIENDS="/friends/**";
 	public static final String URL_METHOD="/method/delete/**";
+	public static final String APP_CONTEXT_PATH="/student-pool-friends";
 }
