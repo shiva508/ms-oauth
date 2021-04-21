@@ -1,0 +1,26 @@
+
+/auth/realms/{realm}/.well-known/openid-configuration
+
+
+
+
+http://localhost:8088/auth/realms/test/protocol/openid-connect/auth?client_id=abcd&response_type=code&scope=profile&redirect_uri=http://localhost:8002/student-pool-friends/oauth/callback&state=shivashiva
+http://localhost:8088/auth/realms/test/protocol/openid-connect/token
+state:shivashiva
+grant_type:authorization_code
+code:
+client_id:abcd
+client_secret:5fe6a20b-3180-4b0f-810e-122e27b77a22
+scope:email
+redirect_uri:http://localhost:8001/callback
+
+Resource Server Data
+http://localhost:8000/users/user
+Authorization:Bearer
+
+http://localhost:8000/okta/token
+
+9cdaa551-d6c6-416b-9eb9-ca6007dc209a
+9cdaa551-d6c6-416b-9eb9-ca6007dc209a
+http://localhost:8001/student-pool-resource-server/method/getuser/9cdaa551-d6c6-416b-9eb9-ca6007dc209a
+http://localhost:8001/student-pool-friends/friends/list
