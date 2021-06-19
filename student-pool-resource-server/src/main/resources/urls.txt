@@ -24,3 +24,7 @@ http://localhost:8000/okta/token
 9cdaa551-d6c6-416b-9eb9-ca6007dc209a
 http://localhost:8001/student-pool-resource-server/method/getuser/9cdaa551-d6c6-416b-9eb9-ca6007dc209a
 http://localhost:8001/student-pool-friends/friends/list
+
+http://localhost:8080/auth/realms/student_pool/protocol/openid-connect/auth?client_id=student_pool&response_type=code&scope=profile&redirect_uri=http://localhost:8002/student-pool-friends/oauth/callback&state=shivashiva
+
+
