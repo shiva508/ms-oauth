@@ -26,6 +26,7 @@ public class PkceUtil {
 			byte[] digest=messageDigest.digest();
 			codeChallenge=Base64.getUrlEncoder().withoutPadding().encodeToString(digest);
 		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Chats</title>
 </head>
 <body>
-	<h1>Welcome</h1>
+<h1>Albums page</h1>
+
+                <div th:if="${chats.empty}">
+                    <div>No albums found</div>
+                </div>
+                
+                <div th:each="chat : ${chats}">
+                    <p><span th:text="${chat.message}"></span></p>
+                </div>
+
 </body>
 </html>
