@@ -17,6 +17,6 @@ public class OAuthController {
 
 	@GetMapping("/token")
 	public ResponseEntity<?> getOthenticationDetails(@AuthenticationPrincipal Jwt jwt) {
-		return new ResponseEntity<>(Collections.singletonMap("oauth", jwt), HttpStatus.OK);
+		return new ResponseEntity<>(Collections.singletonMap("oauth", jwt.getTokenValue()), HttpStatus.OK);
 	}
 }
