@@ -28,4 +28,4 @@ http://localhost:8001/student-pool-friends/friends/list
 
 http://localhost:8080/auth/realms/student_pool/protocol/openid-connect/auth?client_id=student_pool&response_type=code&scope=profile&redirect_uri=http://localhost:8002/student-pool-friends/oauth/callback&state=shivashiva
 
-#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
+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
