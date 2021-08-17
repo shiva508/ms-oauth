@@ -40,4 +40,10 @@ public class MethodLevelSecurityController {
 		return model;
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_student')")
+	@GetMapping("/getPreauthorize")
+	public String verifyWithPreAuthorize() {
+		return "GET PRE AUTHORIZE";
+	}
+	
 }

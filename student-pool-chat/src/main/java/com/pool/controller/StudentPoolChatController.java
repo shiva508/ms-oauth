@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.pool.feign.proxy.FriendsFeignClient;
 import com.pool.feign.proxy.StudentPoolRessourceProxy;
@@ -37,13 +39,16 @@ public class StudentPoolChatController {
 	private PkceUtil pkceUtil;
 
 	@Autowired
-	OAuth2AuthorizedClientService auth2AuthorizedClientService;
+	private OAuth2AuthorizedClientService auth2AuthorizedClientService;
 
 	@Autowired
 	private FriendsFeignClient friendsFeignClient;
 
 	@Autowired
 	private StudentPoolRessourceProxy studentPoolRessourceProxy;
+	
+	@Autowired
+	private WebClient webClient;
 
 	@GetMapping("/chat")
 	public String chatWelcome(Model model, @AuthenticationPrincipal OidcUser oidcUser) {
@@ -81,6 +86,19 @@ public class StudentPoolChatController {
 	@ResponseBody
 	public String deleteUser(@PathVariable("userId") Integer userId) {
 		String data =studentPoolRessourceProxy.deleteUser(userId);
+		return data;
+	}
+	
+	@GetMapping("/getPreauthorize")
+	@ResponseBody
+	public String verifyWithPreAuthorize() {
+		String data=studentPoolRessourceProxy.verifyWithPreAuthorize();
+		return data;
+	}
+	@GetMapping("/getPreauthorizeusingwebclient")
+	@ResponseBody
+	public String usingWebClient() {
+		String data=webClient.get().uri("http://localhost:8001/student-pool-resource-server/method/getPreauthorize").retrieve().bodyToMono(new ParameterizedTypeReference<String>(){}).block();
 		return data;
 	}
 
