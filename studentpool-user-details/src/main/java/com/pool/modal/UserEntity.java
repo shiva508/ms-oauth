@@ -38,9 +38,9 @@ public class UserEntity {
 	public UserEntity() {
 	}
 
-	public UserEntity(long id, String userId, String firstName, String lastName, String email, String encryptedPassword,
+	public UserEntity(String userId, String firstName, String lastName, String email, String encryptedPassword,
 			String emailVerificationToken, Boolean emailVerificationStatus) {
-		this.id = id;
+		
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;

@@ -23,7 +23,6 @@ public class InitialSetup {
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent event) {
         UserEntity user = new UserEntity(
-                1L,
                 "qswe3mg84mfjtu",
                 "Shiva",
                 "Dasari",
