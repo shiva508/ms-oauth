@@ -16,13 +16,13 @@ import com.pool.model.VerifyPasswordResponse;
 public interface UserApiClient {
 
 	@GET
-	@Path("/{userName}")
+	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	User getUser(@PathParam("userName") String userName);
+	User getUser(@PathParam("username") String username);
 
 	@POST
-	@Path("/{userName}/verify-password")
+	@Path("/{username}/verify-password")
 	@Produces(MediaType.APPLICATION_JSON)
-	public VerifyPasswordResponse verifyUserPassword(@PathParam("userName") String userName,
-			@PathParam("password") String password);
+	public VerifyPasswordResponse verifyUserPassword(@PathParam("username") String username,
+			String password);
 }

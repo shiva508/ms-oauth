@@ -1,6 +1,11 @@
 package com.pool.model;
 
 public class VerifyPasswordResponse {
+	
+	public VerifyPasswordResponse() {
+		
+	}
+
 	private boolean result;
 
 	public VerifyPasswordResponse(boolean result) {

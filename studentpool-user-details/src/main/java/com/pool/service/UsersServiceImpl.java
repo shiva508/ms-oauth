@@ -24,9 +24,10 @@ public class UsersServiceImpl implements UsersService {
 		UserEntity userEntity = usersRepository.findByEmail(userName);
 		if (userEntity == null) {
 			return returnValue;
+		}else {
+			BeanUtils.copyProperties(userEntity, returnValue);
+			returnValue.setUserName(returnValue.getEmail());
 		}
-
-		BeanUtils.copyProperties(userEntity, returnValue);
 
 		return returnValue;
 	}
@@ -46,7 +47,7 @@ public class UsersServiceImpl implements UsersService {
 
 			returnValue = new UserRest();
 			BeanUtils.copyProperties(userEntity, returnValue);
-
+			returnValue.setUserName(returnValue.getEmail());
 		}
 
 		return returnValue;

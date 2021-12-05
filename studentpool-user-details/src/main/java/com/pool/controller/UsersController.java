@@ -20,8 +20,9 @@ public class UsersController {
 
 	@GetMapping("/{userName}")
 	public UserRest getUser(@PathVariable("userName") String userName) {
-
-		return usersService.getUserDetails(userName);
+		UserRest rest=usersService.getUserDetails(userName);
+		System.out.println(rest.getEmail());
+		return rest;
 
 	}
 
@@ -32,7 +33,7 @@ public class UsersController {
 		VerifyPasswordResponse returnValue = new VerifyPasswordResponse(false);
 
 		UserRest user = usersService.getUserDetails(userName, password);
-
+System.out.println(user.getUserName());
 		if (user != null) {
 			returnValue.setResult(true);
 		}

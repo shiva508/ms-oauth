@@ -8,6 +8,7 @@ import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
 import org.keycloak.models.UserModel;
 import org.keycloak.models.credential.PasswordCredentialModel;
+import org.keycloak.storage.StorageId;
 import org.keycloak.storage.UserStorageProvider;
 import org.keycloak.storage.adapter.AbstractUserAdapter;
 import org.keycloak.storage.user.UserLookupProvider;
@@ -62,27 +63,33 @@ public class StudentPoolRemoteUserStorageProvider
 
 	@Override
 	public UserModel getUserById(String id, RealmModel realm) {
-		return null;
+		StorageId storageId = new StorageId(id);
+		String username = storageId.getExternalId();
+		return getUserByUsername(username, realm);
 	}
 
 	@Override
 	public UserModel getUserByUsername(String username, RealmModel realm) {
 		UserModel userModel=null;
 		User user=userApiClient.getUser(username);
+		System.out.println("USRE ID:"+user.getUserName());
 		if(null !=user) {
-			userModel=createUserModel(user,realm);
+			userModel=createUserModel(username,realm);
+			System.out.println("DASA:"+userModel);
 		}
 		
-		return null;
+		return userModel;
 	}
 
-	private UserModel createUserModel(User user, RealmModel realm) {
-		return new AbstractUserAdapter(session,realm,model) {
+	private UserModel createUserModel(String username, RealmModel realm) {
+		UserModel modelasasas= new AbstractUserAdapter(session,realm,model) {
 			@Override
 			public String getUsername() {
-				return user.getUserName();
+				return username;
 			}
 		};
+		System.out.println(modelasasas);
+		return modelasasas;
 	}
 
 	@Override
