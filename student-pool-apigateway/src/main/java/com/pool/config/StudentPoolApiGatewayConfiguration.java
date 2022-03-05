@@ -14,6 +14,8 @@ public class StudentPoolApiGatewayConfiguration {
 				.route(r->r.path("/student-pool-friends/**").uri("lb://student-pool-friends"))
 				.route(r->r.path("/student-pool-resource-server/**").uri("lb://student-pool-resource-server"))
 				.route(r->r.path("/student-pool-chat/**").uri("lb://student-pool-chat"))
+				.route(r->r.path("/presentation/**").uri("lb://studentpool-presentations"))
+				.route(r->r.path("/money/**").uri("lb://studentpool-money"))
 				.build();
 	}
 }
