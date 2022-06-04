@@ -20,6 +20,9 @@ GATEWAY=http://localhost:8001/productservice/v1/product/getproduct
 MANUAL CONFIGURED GATEWAY ROUTES
 STUDENTPOOL-PRESENTATIONS=http://localhost:8001/api/v1/presentation/hello
 
+URL REWRITE
+http://localhost:8001/studentpool-presentations/api/v1/notes/hellourlrewrite
+
 DOCKER
 MONGO_DB:sudo docker run -it -d --name mongo-container -p 27017:27017 --network shivanetwork --restart always -v mongodb_data_container:/data/db mongo:latest
 

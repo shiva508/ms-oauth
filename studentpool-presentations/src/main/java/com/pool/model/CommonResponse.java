@@ -3,6 +3,8 @@ package com.pool.model;
 public class CommonResponse {
 	private String message;
 	private Integer code;
+	
+	private String port;
 
 	public CommonResponse() {
 	}
@@ -25,4 +27,14 @@ public class CommonResponse {
 		return this;
 	}
 
+	public String getPort() {
+		return port;
+	}
+
+	public CommonResponse setPort(String port) {
+		this.port = port;
+		return this;
+	}
+
+	
 }
