@@ -10,7 +10,7 @@ import com.pool.model.CommonResponse;
 import com.pool.proxy.MoneyFeignProxy;
 
 @RestController
-@RequestMapping("/presentation")
+@RequestMapping("/api/v1/presentation")
 public class PresentaionController {
 	
 	@Autowired
