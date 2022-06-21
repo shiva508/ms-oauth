@@ -8,13 +8,15 @@ spring:
       server:
         git:
           uri: https://github.com/shiva508/studentpool_config
-          username: shiva508
-          password: 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
           repos:
             dev-studentpool_preparation:
-              pattern: studentpool_preparation*/*
+              pattern: studentpool_preparation/stage
+              uri: https://github.com/shiva508/studentpool_config
+              search-paths:
+                - spring-cloud-config-server-setup/preparation
+            
+            dev-studentpool_notes:
+              pattern: studentpool_notes*/*
               uri: https://github.com/shiva508/studentpool_config
               search-paths:
                 - spring-cloud-config-server-setup/{application}/{profile}
-              
-                
