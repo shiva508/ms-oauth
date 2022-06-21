@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: studentpool_preparation
+  config:
+    import: "configserver:"  
+  profiles:
+    active: dev
+

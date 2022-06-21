@@ -25,11 +25,14 @@ public class EpoolWebsecurity extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private Environment environment;
+	
+	@Autowired
+	private EpoolEnvConfiguration envConfiguration;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeHttpRequests().antMatchers("/userprofile/**").permitAll()
+		http.authorizeHttpRequests().antMatchers("/userprofile/**","/actuator/**").permitAll()
 		.anyRequest()
 		.authenticated().and()
 				.addFilter(getAuthenticationFilter()).formLogin();
@@ -38,7 +41,8 @@ public class EpoolWebsecurity extends WebSecurityConfigurerAdapter {
 
 	private EpoolAuthenticationFilter getAuthenticationFilter() throws Exception {
 		EpoolAuthenticationFilter authenticationFilter = new EpoolAuthenticationFilter(userService,environment,authenticationManager());
-		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
+		authenticationFilter.setFilterProcessesUrl(envConfiguration.getLoginUrlPath());
+		//authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
 		//authenticationFilter.setAuthenticationManager(authenticationManager());
 		return authenticationFilter;
 	}

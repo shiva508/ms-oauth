@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pool.model.LoginRequestModel;
@@ -46,7 +47,7 @@ public class EpoolAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		try {
 
 			LoginRequestModel creds = new ObjectMapper().readValue(request.getInputStream(), LoginRequestModel.class);
-
+			System.out.println("creds:" + creds);
 			return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(),
 					creds.getPassword(), new ArrayList<>()));
 
@@ -62,9 +63,14 @@ public class EpoolAuthenticationFilter extends UsernamePasswordAuthenticationFil
 		String username = ((User) authResult.getPrincipal()).getUsername();
 
 		UserModel userModel = userService.getUserByEmail(username);
-		String token=Jwts.builder().setSubject(userModel.getUserId())
-		.setExpiration(new Date(System.currentTimeMillis()+Long.parseLong(environment.getProperty("token.expiration_time"))))
-		.signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret")).compact();
+		String token = Jwts.builder().setSubject(userModel.getUserId())
+				.setExpiration(new Date(
+						System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
+				.signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret")).compact();
+		// .setExpiration(new
+		// Date(System.currentTimeMillis()+Long.parseLong(environment.getProperty("token.expiration_time"))))
+		// .signWith(SignatureAlgorithm.HS512,
+		// environment.getProperty("token.secret")).compact();
 		response.addHeader("token", token);
 		response.addHeader("username", userModel.getUserId());
 	}
