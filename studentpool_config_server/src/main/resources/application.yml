@@ -10,10 +10,10 @@ spring:
           uri: https://github.com/shiva508/studentpool_config
           repos:
             dev-studentpool_preparation:
-              pattern: studentpool_preparation/stage
+              pattern: studentpool_preparation*/*
               uri: https://github.com/shiva508/studentpool_config
               search-paths:
-                - spring-cloud-config-server-setup/preparation
+                - spring-cloud-config-server-setup/{application}/{profile}
             
             dev-studentpool_notes:
               pattern: studentpool_notes*/*
