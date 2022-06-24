@@ -3,10 +3,15 @@ server:
 spring:
   application:
     name: studentpool_config_server
+  profiles:
+    active:
+    - git
+    - native
   cloud:
     config:
       server:
         git:
+          clone-on-start: true
           uri: https://github.com/shiva508/studentpool_config
           repos:
             dev-studentpool_preparation:
@@ -20,3 +25,8 @@ spring:
               uri: https://github.com/shiva508/studentpool_config
               search-paths:
                 - spring-cloud-config-server-setup/{application}/{profile}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

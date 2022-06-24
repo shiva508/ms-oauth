@@ -1,0 +1,47 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: studentpool-presentations
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/shiva
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active:
+    - dev
+  config:
+    import: "optional:configserver:"
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+token:
+  expiration_time: 864000000
+  secret: hfgry463hf746hf573ydh475fhy5739
+
+login:
+  url:
+    path: /users/login
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    preferIpAddress: 'true'
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+
+
+
+
+
+
+
+#spring.config.import=optional:configserver:http://localhost:8010

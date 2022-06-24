@@ -41,7 +41,7 @@ public class EpoolWebsecurity extends WebSecurityConfigurerAdapter {
 
 	private EpoolAuthenticationFilter getAuthenticationFilter() throws Exception {
 		EpoolAuthenticationFilter authenticationFilter = new EpoolAuthenticationFilter(userService,environment,authenticationManager());
-		authenticationFilter.setFilterProcessesUrl(envConfiguration.getLoginUrlPath());
+		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
 		//authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
 		//authenticationFilter.setAuthenticationManager(authenticationManager());
 		return authenticationFilter;
